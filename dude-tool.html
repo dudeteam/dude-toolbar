@@ -1,0 +1,94 @@
+<!--
+Copyright (c) 2015 DudeTeam. All rights reserved.
+-->
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-tooltip/paper-tooltip.html">
+<link rel="import" href="../iron-a11y-keys-behavior/iron-a11y-keys-behavior.html">
+<dom-module id="dude-tool">
+    <style>
+        :host {
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+        }
+        :host(:hover) i {
+            color: var(--dude-primary-color);
+        }
+        i {
+            color: var(--dude-primary-light-color);
+            font-size: 1.2em;
+        }
+        #description {
+            color: #aaaaaa;
+            font-size: .8em;
+            padding-top: 5px;
+            font-family: var(--dude-primary-text-font);
+        }
+    </style>
+    <template>
+        <div id="tool">
+            <i class$="[[ icon ]]"></i>
+            <div id="description">[[ description ]]</div>
+        </div>
+        <paper-tooltip for="tool" position="top">[[ _shortcutInfo ]]</paper-tooltip>
+    </template>
+    <script>
+        Polymer({
+
+            is: "dude-tool",
+
+            behaviors: [Polymer.IronA11yKeysBehavior],
+
+            properties: {
+
+                icon: {
+                    type: String
+                },
+
+                shortcut: {
+                    type: Array
+                },
+
+                description: {
+                    type: String
+                },
+
+                action: {
+                    type: Function
+                }
+
+            },
+
+            "listeners": {
+                "click": "_runAction"
+            },
+
+            ready: function () {
+                this.set("keyEventTarget", document.body);
+                this.set("stopKeyboardEventPropagation", true);
+                this.set("_shortcutInfo", this._getShortcut()
+                        .replace("meta", "⌘")
+                        .replace("ctrl", "^")
+                        .replace("shift", "⇧")
+                        .replace("enter", "↩")
+                        .replace("backspace", "⌫")
+                        .replace("alt", "⌥")
+                        .replace(/\+/g, " + ")
+                        .toUpperCase()
+                );
+                this.addOwnKeyBinding(this._getShortcut(), "_runAction");
+            },
+
+            _runAction: function (e) {
+                this.action(e);
+                e && e.detail && e.detail.keyboardEvent && e.detail.keyboardEvent.preventDefault();
+            },
+
+            _getShortcut: function () {
+                var isMac = navigator.platform.toUpperCase().indexOf("MAC") !== -1;
+                return isMac ? this.shortcut[1] || this.shortcut[0] : this.shortcut[0];
+            }
+
+        });
+    </script>
+</dom-module>

@@ -1,0 +1,64 @@
+<!--
+Copyright (c) 2015 DudeTeam. All rights reserved.
+-->
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="dude-tool.html">
+<!--
+`dude-toolbar` is a Polymer element boilerplate for dude library.
+
+@group dude Elements
+@element dude-toolbar
+@demo demo/index.html
+-->
+<dom-module id="dude-toolbar">
+    <style>
+        #toolbar {
+            background: var(--dude-secondary-background-color);
+            @apply(--layout-horizontal);
+        }
+        dude-tool {
+            @apply(--layout-flex);
+        }
+    </style>
+    <template>
+        <div id="toolbar">
+            <template is="dom-repeat" items="[[ commands ]]">
+                <dude-tool hidden$="[[ item.hidden ]]"
+                           icon="[[ item.icon ]]"
+                           shortcut="[[ item.shortcut ]]"
+                           description="[[ item.description ]]"
+                           action="[[ item.action ]]">
+                </dude-tool>
+            </template>
+        </div>
+    </template>
+    <script>
+        Polymer({
+
+            is: "dude-toolbar",
+
+            properties: {
+
+                commands: {
+                    type: Array,
+                    value: []
+                }
+
+            },
+
+            /**
+             * Add the given command to the list of currently enabled commands.
+             * @param {Object} command
+             * @param {String} command.icon - The icon to display for this tool.
+             * @param {String} command.description - A short description of what the command does.
+             * @param {Array} command.shortcut - The keyboard shortcut that can trigger the command (ctrlOrCmd+yourKey).
+             * @param {Function} command.action - The function to call when the command is triggered.
+             */
+            addCommand: function (command) {
+                this.push("commands", command);
+            }
+
+        });
+    </script>
+</dom-module>

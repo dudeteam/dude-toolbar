@@ -1,0 +1,31 @@
+{
+  "name": "dude-toolbar",
+  "version": "0.0.1",
+  "authors": [
+    "Jeremie Taboada <taboada.jeremie@gmail.com>"
+  ],
+  "description": "A generic toolbar.",
+  "keywords": [
+    "dude",
+    "state"
+  ],
+  "main": "dude-toolbar.html",
+  "license": "MIT",
+  "homepage": "https://github.com/dudeteam/dude-toolbar/",
+  "ignore": [
+    "/.*",
+    "/test/",
+    "/demo/"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.0.0",
+    "font-awesome": "~4.5.0",
+    "paper-tooltip": "PolymerElements/paper-tooltip#~1.1.1",
+    "dude-style": "~0.1.1",
+    "iron-flex-layout": "PolymerElements/iron-flex-layout#~1.2.2"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "web-component-tester": "*"
+  }
+}

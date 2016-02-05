@@ -1,0 +1,51 @@
+<link rel="import" href="../../polymer/polymer.html">
+<dom-module id="demo-wrapper">
+    <style>
+        #content {
+            height: 300px;
+        }
+    </style>
+    <template>
+        <div id="content">Use a command...</div>
+        <dude-toolbar id="toolbar"></dude-toolbar>
+    </template>
+    <script>
+        Polymer({
+            is: "demo-wrapper",
+
+            ready: function () {
+                this.$.toolbar.addCommand({
+                    icon: "fa fa-save",
+                    description: "Save graph",
+                    shortcut: ["ctrl+s", "meta+s"],
+                    action: function (e) { this.$.content.innerHTML = "Save"; }.bind(this)
+                });
+                this.$.toolbar.addCommand({
+                    icon: "fa fa-play",
+                    description: "Build graph",
+                    shortcut: ["ctrl+b", "meta+b"],
+                    action: function (e) { this.$.content.innerHTML = "Build"; }.bind(this)
+                });
+                this.$.toolbar.addCommand({
+                    icon: "fa fa-trash",
+                    description: "Remove selection",
+                    shortcut: ["del", "meta+backspace"],
+                    action: function (e) { this.$.content.innerHTML = "Remove"; }.bind(this)
+                });
+                this.$.toolbar.addCommand({
+                    icon: "fa fa-square-o",
+                    description: "Create group",
+                    shortcut: ["ctrl+g", "meta+g"],
+                    action: function (e) { this.$.content.innerHTML = "Create group"; }.bind(this)
+                });
+                this.$.toolbar.addCommand({
+                    hidden: true,
+                    icon: "fa fa-square-o",
+                    description: "Hidden command",
+                    shortcut: ["ctrl+h", "meta+h"],
+                    action: function (e) { this.$.content.innerHTML = "Hidden command"; }.bind(this)
+                });
+            }
+        });
+    </script>
+</dom-module>
