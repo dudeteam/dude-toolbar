@@ -2,7 +2,7 @@
 Copyright (c) 2015 DudeTeam. All rights reserved.
 -->
 <link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="dude-tool.html">
 <!--
 `dude-toolbar` is a Polymer element boilerplate for dude library.
@@ -12,19 +12,17 @@ Copyright (c) 2015 DudeTeam. All rights reserved.
 @demo demo/index.html
 -->
 <dom-module id="dude-toolbar">
+    <style is="custom-style" include="iron-flex"></style>
     <style>
         #toolbar {
             background: var(--dude-secondary-background-color);
-            @apply(--layout-horizontal);
-        }
-        dude-tool {
-            @apply(--layout-flex);
         }
     </style>
     <template>
-        <div id="toolbar">
+        <div id="toolbar" class="layout horizontal flex">
             <template is="dom-repeat" items="[[ commands ]]">
-                <dude-tool hidden$="[[ item.hidden ]]"
+                <dude-tool class="flex"
+                           hidden$="[[ item.hidden ]]"
                            icon="[[ item.icon ]]"
                            shortcut="[[ item.shortcut ]]"
                            description="[[ item.description ]]"
