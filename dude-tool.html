@@ -4,6 +4,8 @@ Copyright (c) 2015 DudeTeam. All rights reserved.
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../paper-tooltip/paper-tooltip.html">
 <link rel="import" href="../iron-a11y-keys-behavior/iron-a11y-keys-behavior.html">
+<link rel="import" href="../dude-style/dude-style.html">
+<link rel="stylesheet" href="../font-awesome/css/font-awesome.css">
 <dom-module id="dude-tool">
     <style>
         :host {
@@ -11,18 +13,18 @@ Copyright (c) 2015 DudeTeam. All rights reserved.
             text-align: center;
             cursor: pointer;
         }
-        :host(:hover) i {
-            color: var(--dude-primary-color);
-        }
         i {
-            color: var(--dude-primary-light-color);
+            color: var(--dude-dark1-color);
             font-size: 1.2em;
         }
+        :host(:hover) i {
+            color: var(--dude-status-info-color);
+        }
         #description {
-            color: #aaaaaa;
-            font-size: .8em;
             padding-top: 5px;
-            font-family: var(--dude-primary-text-font);
+            color: var(--dude-dark1-color);
+            font-family: var(--dude-font-content);
+            font-size: .8em;
         }
     </style>
     <template>
@@ -34,31 +36,22 @@ Copyright (c) 2015 DudeTeam. All rights reserved.
     </template>
     <script>
         Polymer({
-
             is: "dude-tool",
-
             behaviors: [Polymer.IronA11yKeysBehavior],
-
             properties: {
-
-                icon: {
-                    type: String
+                "icon": {
+                    "type": String
                 },
-
-                shortcut: {
-                    type: Array
+                "shortcut": {
+                    "type": Array
                 },
-
-                description: {
-                    type: String
+                "description": {
+                    "type": String
                 },
-
-                action: {
-                    type: Function
+                "action": {
+                    "type": Function
                 }
-
             },
-
             "listeners": {
                 "click": "_runAction"
             },

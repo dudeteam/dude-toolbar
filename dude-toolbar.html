@@ -3,6 +3,7 @@ Copyright (c) 2015 DudeTeam. All rights reserved.
 -->
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../dude-style/dude-style.html">
 <link rel="import" href="dude-tool.html">
 <!--
 `dude-toolbar` is a Polymer element boilerplate for dude library.
@@ -13,11 +14,6 @@ Copyright (c) 2015 DudeTeam. All rights reserved.
 -->
 <dom-module id="dude-toolbar">
     <style is="custom-style" include="iron-flex"></style>
-    <style>
-        #toolbar {
-            background: var(--dude-secondary-background-color);
-        }
-    </style>
     <template>
         <div id="toolbar" class="layout horizontal flex">
             <template is="dom-repeat" items="[[ commands ]]">
@@ -33,16 +29,12 @@ Copyright (c) 2015 DudeTeam. All rights reserved.
     </template>
     <script>
         Polymer({
-
             is: "dude-toolbar",
-
             properties: {
-
-                commands: {
-                    type: Array,
-                    value: []
+                "commands": {
+                    "type": Array,
+                    "value": []
                 }
-
             },
 
             /**
@@ -56,7 +48,6 @@ Copyright (c) 2015 DudeTeam. All rights reserved.
             addCommand: function (command) {
                 this.push("commands", command);
             }
-
         });
     </script>
 </dom-module>
